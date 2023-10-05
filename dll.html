@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+class Node {
+    constructor(data) {
+        this.prev = null;
+        this.data = data;
+        this.next = null;
+        // this.length=0;
+    }
+}
+class DLL {
+
+    constructor(data) {
+        const newNode = new Node(data);
+        this.head = newNode;
+        this.tail = newNode;
+        this.length = 1;
+    }
+    push(data) {
+        const newNode = new Node(data);
+        if (!this.length) {
+            this.head = newNode;
+            this.tail = newNode;
+            this.length = 1
+        }
+        else {
+            this.tail.next = newNode;
+            newNode.prev = this.tail;
+            this.tail = newNode;
+        }
+        this.length++;
+        return this;
+    }
+    pop(){
+        let temp=this.tail;
+        if(!this.length) return undefined;
+        if(this.length==1)
+        {
+            this.head=null;
+            this.tail=null;
+        }
+        else
+        {
+            temp.prev.next=null;
+            temp.prev=this.tail;
+            temp.prev=null;
+        }
+        this.length--;
+        return temp;
+    }
+}
+const dll = new DLL(20);
+dll.push(30);
+dll.push(40);
+console.log(dll);
+dll.pop();
+console.log("after pop")
+console.log(dll);
+    </script>
+</body>
+
+</html>
